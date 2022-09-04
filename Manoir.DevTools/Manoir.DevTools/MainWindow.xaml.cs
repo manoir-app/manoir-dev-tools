@@ -41,25 +41,23 @@ namespace Manoir.DevTools
             var t = (args.SelectedItemContainer.Tag as string)?.ToLowerInvariant();
             if (t == null)
                 return;
-            FrameNavigationOptions navOptions = new FrameNavigationOptions();
-            navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
 
             switch (t)
             {
                 case "home":
-                    DoNav(typeof(HomePage), null, navOptions) ;
+                    DoNav(typeof(HomePage), null) ;
                     break;
                 case "local-debug":
-                    DoNav(typeof(LocalDebugPage), null, navOptions);
+                    DoNav(typeof(LocalDebugPage), null);
                     break;
             }
         }
 
-        private void DoNav(Type type, object value, FrameNavigationOptions navOptions)
+        private void DoNav(Type type, object value)
         {
             var curr = frmMainNav.CurrentSourcePageType;
             if (type != curr)
-                frmMainNav.NavigateToType(type, value, navOptions);
+                frmMainNav.Navigate(type, value);
         }
 
         private void nvMainNav_Loaded(object sender, RoutedEventArgs e)
