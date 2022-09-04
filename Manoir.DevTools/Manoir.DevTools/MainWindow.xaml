@@ -1,0 +1,45 @@
+﻿<Window
+    x:Class="Manoir.DevTools.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Manoir.DevTools"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    
+    <NavigationView x:Name="nvMainNav"
+    IsSettingsVisible="True"
+    IsBackButtonVisible="Collapsed"
+    IsBackEnabled="False"
+    SelectionChanged="nvMainNav_SelectionChanged"
+    Loaded="nvMainNav_Loaded"
+    AlwaysShowHeader="False"
+    PaneDisplayMode="Left"
+    ExpandedModeThresholdWidth="500"
+    SelectionFollowsFocus="Disabled"
+                    Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
+    IsTabStop="False">
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Home" Tag="Home" x:Name="nviHome">
+                <NavigationViewItem.Icon>
+                    <SymbolIcon Symbol="Home" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Content="Local debug" Tag="Local-Debug" x:Name="nviLocalDebug">
+                <NavigationViewItem.Icon>
+                    <ImageIcon Source="ms-appx:///Assets/streamlinehq-computer-bug-search-programming-apps-websites-32.SVG" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+
+        </NavigationView.MenuItems>
+
+        
+        
+        <Frame x:Name="frmMainNav" />
+    </NavigationView>
+
+
+</Window>

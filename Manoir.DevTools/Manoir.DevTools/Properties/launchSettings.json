@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Manoir.DevTools (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Manoir.DevTools (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
