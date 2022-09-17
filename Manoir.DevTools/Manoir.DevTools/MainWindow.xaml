@@ -28,9 +28,14 @@
                     <SymbolIcon Symbol="Home" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Content="Local debug" Tag="Local-Debug" x:Name="nviLocalDebug">
+            <!--<NavigationViewItem Content="Local debug" Tag="Local-Debug" x:Name="nviLocalDebug">
                 <NavigationViewItem.Icon>
-                    <ImageIcon Source="ms-appx:///Assets/streamlinehq-computer-bug-search-programming-apps-websites-32.SVG" />
+                    <ImageIcon Source="ms-appx:///Assets/streamlinehq-laptop-bug-computers-devices-electronics-24.SVG" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>-->
+            <NavigationViewItem Content="Deploy" Tag="Deploy" x:Name="nviDeploy">
+                <NavigationViewItem.Icon>
+                    <ImageIcon Source="ms-appx:///Assets/streamlinehq-shipment-container-shipping-delivery-24.SVG" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
 
