@@ -4,16 +4,17 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  IgnorableNamespaces="uap rescap mp">
 
   <Identity
-    Name="8d9554dd-e787-410c-becc-bbf953bf986a"
-    Publisher="CN=MichaelCARBENAY"
+    Name="CreoIgnem.2647635F634E4"
+    Publisher="CN=230A60E5-FA80-4D5A-9A0E-B4E47BA156C5"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>Manoir.DevTools</DisplayName>
-    <PublisherDisplayName>MichaelCARBENAY</PublisherDisplayName>
+    <DisplayName>ManoirApp DevTools</DisplayName>
+    <PublisherDisplayName>Altazion</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,12 +32,12 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Manoir.DevTools"
-        Description="Manoir.DevTools"
+        DisplayName="ManoirApp DevTools"
+        Description="Developper Tools for Manoir App."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"  Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
@@ -45,4 +46,6 @@
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
+
+  <mp:PhoneIdentity PhoneProductId="dc011479-e452-4ed3-a209-13a33567e6ae" PhonePublisherId="230A60E5-FA80-4D5A-9A0E-B4E47BA156C5"/>
 </Package>

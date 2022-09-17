@@ -8,7 +8,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="Welcome !" />
-    </Grid>
+    <StackPanel Margin="40">
+        <Image Source="ms-appx:///Assets/Square150x150Logo.scale-400.png" Height="400" HorizontalAlignment="Center" />
+        <TextBlock Text="Welcome !" Style="{StaticResource TitleText}" HorizontalAlignment="Center" />
+        <TextBlock Text="DevTools are only meant to be used by people working on manoir.app solutions for Smart Home" HorizontalAlignment="Center" Margin="0,20" />
+    </StackPanel>
 </Page>
