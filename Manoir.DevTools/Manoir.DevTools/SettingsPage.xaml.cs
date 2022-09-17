@@ -26,17 +26,48 @@ namespace Manoir.DevTools
     public sealed partial class SettingsPage : Page
     {
         public ToolsBll.Settings AllSettings { get; set; }
-
+        DispatcherTimer _tmr;
 
         public SettingsPage()
         {
             AllSettings = ToolsBll.Load();
             this.InitializeComponent();
+            _tmr = new DispatcherTimer();
+            _tmr.Interval = TimeSpan.FromMilliseconds(250);
+            _tmr.Tick += _tmr_Tick;
         }
 
-        private void txtRepo_TextChanged(object sender, TextChangedEventArgs e)
+        private void _tmr_Tick(object sender, object e)
         {
+            _tmr.Stop();
             ToolsBll.Save(AllSettings);
+        }
+
+        private void SomeText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _tmr.Stop();
+            _tmr.Start();
+        }
+
+        private void btnAddEnv_Click(object sender, RoutedEventArgs e)
+        {
+            AllSettings.Add(new SettingsEnvironnement()
+            {
+                Name = "NEW"
+            });
+            _tmr.Stop();
+            _tmr.Start();
+        }
+
+        private void btnSuppr_Click(object sender, RoutedEventArgs e)
+        {
+            var t = (e.OriginalSource as FrameworkElement)?.DataContext as SettingsEnvironnement;
+            if (t != null)
+            {
+                AllSettings.Remove(t);
+                _tmr.Stop();
+                _tmr.Start();
+            }
         }
     }
 }

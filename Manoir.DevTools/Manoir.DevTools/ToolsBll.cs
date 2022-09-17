@@ -16,6 +16,14 @@ using Windows.Services.Maps;
     
 namespace Manoir.DevTools
 {
+    public class SettingsEnvironnement
+    {
+        public string Name { get; set; }
+        public string ServerUrl { get; set; }
+        public string DockerRepositoyUrl { get; set; }
+        public string DockerTagForImages { get; set; }
+    }
+
     public static class ToolsBll
     {
         public class Settings : ObservableCollection<SettingsEnvironnement>, INotifyPropertyChanged
@@ -29,17 +37,10 @@ namespace Manoir.DevTools
                 set
                 {
                     _local = value;
-                    OnPropertyChanged("Local");
+                    OnPropertyChanged(new PropertyChangedEventArgs("Local"));
                 }
             }
 
-            public event PropertyChangedEventHandler PropertyChanged;
-            private void OnPropertyChanged(string propertyName)
-            {
-                var evt = PropertyChanged;
-                if (evt != null)
-                    evt(this, new PropertyChangedEventArgs(propertyName));
-            }
             #endregion
         }
 
@@ -68,13 +69,7 @@ namespace Manoir.DevTools
 
         }
 
-        public class SettingsEnvironnement
-        {
-            public string Name { get; set; }
-            public string ServerUrl { get; set; }
-            public string DockerRepositoyUrl { get; set; }
-            public string DockerTagForImages { get; set; }
-        }
+       
 
         public static Settings Load()
         {
@@ -88,9 +83,16 @@ namespace Manoir.DevTools
             if (File.Exists(pth))
                 settings.Local = JsonSerializer.Deserialize<SettingsLocal>(File.ReadAllText(pth));
             else
-                settings.Local = new SettingsLocal() { RootForManoirRepo = "c:\\test"};
+                settings.Local = new SettingsLocal() { RootForManoirRepo = FindGitFolder()};
 
             return settings;
+        }
+
+        private static string FindGitFolder()
+        {
+            var usrPth = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            usrPth = Path.Combine(usrPth, "source", "repos");
+            return usrPth;
         }
 
         public static void Save(Settings settings)

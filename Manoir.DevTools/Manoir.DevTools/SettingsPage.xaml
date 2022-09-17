@@ -8,12 +8,52 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
+    <StackPanel  Margin="20,24">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
             <TextBlock Style="{StaticResource TitleText}" >Settings</TextBlock>
         </StackPanel>
 
-        <TextBox Header="Root Git Folder for manoir projects" x:Name="txtRepo" TextChanged="txtRepo_TextChanged"
-                 PlaceholderText="ex : c:\git-dev\manoir\" Text="{x:Bind AllSettings.Local.RootForManoirRepo, Mode=TwoWay}" />
+        <TextBox Header="Root Git Folder for manoir projects" x:Name="txtRepo" TextChanged="SomeText_TextChanged"
+                 PlaceholderText="ex : c:\git-dev\manoir\" Text="{x:Bind AllSettings.Local.RootForManoirRepo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Grid Margin="0,40,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Text="Environments" />
+            <Button Grid.Column="1" Content="Add" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" x:Name="btnAddEnv" Click="btnAddEnv_Click" />
+        </Grid>
+
+        <ItemsRepeater ItemsSource="{x:Bind AllSettings}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="local:SettingsEnvironnement">
+                    <Border BorderThickness="0,0,0,1" BorderBrush="#efefef" Padding="0,10,0,10">
+                        <Grid ColumnSpacing="10" TabFocusNavigation="Cycle">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Header="Name" TextChanged="SomeText_TextChanged"  IsTabStop="True" 
+                             Text="{x:Bind Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Header="ServerUrl" TextChanged="SomeText_TextChanged" Grid.Column="1" IsTabStop="True" 
+                             Text="{x:Bind ServerUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Header="DockerRepositoyUrl" TextChanged="SomeText_TextChanged" Grid.Column="2" IsTabStop="True" 
+                             Text="{x:Bind DockerRepositoyUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Header="DockerTagForImages" TextChanged="SomeText_TextChanged" Grid.Column="3" IsTabStop="True" 
+                             Text="{x:Bind DockerTagForImages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button Grid.Column="4" Content="DEL" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" IsTabStop="True" x:Name="btnSuppr" Click="btnSuppr_Click" />
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+
+
     </StackPanel>
 </Page>
