@@ -50,6 +50,9 @@ namespace Manoir.DevTools
                 case "local-debug":
                     DoNav(typeof(LocalDebugPage), null);
                     break;
+                case "settings":
+                    DoNav(typeof(SettingsPage), null);
+                    break;
             }
         }
 

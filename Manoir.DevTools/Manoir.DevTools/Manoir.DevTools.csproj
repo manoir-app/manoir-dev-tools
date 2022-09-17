@@ -10,11 +10,13 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\streamlinehq-computer-bug-search-programming-apps-websites-32.SVG" />
     <None Remove="HomePage.xaml" />
     <None Remove="LocalDebugPage.xaml" />
+    <None Remove="SettingsPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +42,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="LocalDebugPage.xaml">
