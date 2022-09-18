@@ -37,10 +37,27 @@ namespace Manoir.DevTools
             this.InitializeComponent();
         }
 
-        private void bntBuild_Click(object sender, RoutedEventArgs e)
+        private async void bntBuild_Click(object sender, RoutedEventArgs e)
         {
             var t = (e.OriginalSource as FrameworkElement)?.DataContext as BuildResult;
-            BuildBll.BuildAndDeploy(t);
+            pnlNormal.IsEnabled = false;
+            pnlProgess.Visibility = Visibility.Visible;
+            prgProgress.IsActive = true;
+            try
+            {
+                await BuildBll.BuildAndDeploy(t);
+            }
+            catch(Exception ex)
+            {
+                pnlError.Message = ex.Message;
+                pnlError.IsOpen = true;
+            }
+            finally
+            {
+                pnlNormal.IsEnabled = true;
+                pnlProgess.Visibility = Visibility.Collapsed;
+                prgProgress.IsActive = false;
+            }
         }
     }
 }

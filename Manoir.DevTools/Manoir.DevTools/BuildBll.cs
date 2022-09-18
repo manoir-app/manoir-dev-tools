@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Manoir.DevTools
 {
@@ -178,22 +179,25 @@ namespace Manoir.DevTools
             }
         }
 
-        public static bool BuildAndDeploy(BuildResult br)
+        public static async Task<bool> BuildAndDeploy(BuildResult br)
         {
             string pthTmp = Path.Combine(Path.GetTempPath(), "manoir-build");
             if (Directory.Exists(pthTmp))
                 Directory.Delete(pthTmp, true);
             Directory.CreateDirectory(pthTmp);
 
-            // on build le csproj
-            foreach (var c in Directory.GetFiles(br.Parent.Folder, "*.csproj"))
+            return await Task.Run<bool>(() =>
             {
-                BuildCsProj(c, pthTmp);
-            }
+                // on build le csproj
+                foreach (var c in Directory.GetFiles(br.Parent.Folder, "*.csproj"))
+                {
+                    BuildCsProj(c, pthTmp);
+                }
 
-            BuildDocker(pthTmp, br);
+                BuildDocker(pthTmp, br);
 
-            return true;
+                return true;
+            });
         }
 
         private static bool BuildDocker(string pthTmp, BuildResult br)

@@ -57,34 +57,47 @@
 
 
     </Page.Resources>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled" x:Name="pnlNormal" >
+            <StackPanel  Margin="20,24">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Style="{StaticResource TitleText}" >Deployment</TextBlock>
+                </StackPanel>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled">
-        <StackPanel  Margin="20,24">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <TextBlock Style="{StaticResource TitleText}" >Deployment</TextBlock>
-            </StackPanel>
+                <InfoBar x:Name="pnlError" 
+                         IsOpen="False"
+                        Severity="Error"
+                        Title="Error"
+                         Margin="0,0,0,10"
+                         />
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="" />
-                <ItemsRepeater Grid.Column="1" HorizontalAlignment="Stretch"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="" />
+                    <ItemsRepeater Grid.Column="1" HorizontalAlignment="Stretch"
                            Layout="{StaticResource UniformGridLayout}"
                            ItemsSource="{x:Bind AllSettings}">
 
-                    <ItemsRepeater.ItemTemplate>
-                        <DataTemplate x:DataType="local:SettingsEnvironnement">
-                            <TextBlock Text="{x:Bind Name}" />
-                        </DataTemplate>
-                    </ItemsRepeater.ItemTemplate>
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate x:DataType="local:SettingsEnvironnement">
+                                <TextBlock Text="{x:Bind Name}" />
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </Grid>
+
+
+                <ItemsRepeater ItemsSource="{x:Bind AllData}" ItemTemplate="{StaticResource KindTemplate}">
                 </ItemsRepeater>
-            </Grid>
+            </StackPanel>
+        </ScrollViewer>
 
-
-            <ItemsRepeater ItemsSource="{x:Bind AllData}" ItemTemplate="{StaticResource KindTemplate}">
-            </ItemsRepeater>
-        </StackPanel>
-    </ScrollViewer>
+        <Border Background="#80efefef" x:Name="pnlProgess" Visibility="Collapsed">
+            <ProgressRing IsActive="false" x:Name="prgProgress" />
+        </Border>
+        
+    </Grid>
 </Page>
